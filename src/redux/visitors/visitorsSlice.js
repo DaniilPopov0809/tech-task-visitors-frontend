@@ -34,10 +34,11 @@ export const visitorsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         const index = state.items.findIndex(
-          (visitor) => visitor.id === action.payload.id
+          visitor => visitor.id === action.payload.id
         );
         state.items.splice(index, 1);
       })
+          
       .addCase(visitorAPI.remove.rejected, handleRejected)
       .addCase(visitorAPI.update.pending, handlePending)
       .addCase(visitorAPI.update.fulfilled, (state, action) => {
@@ -45,18 +46,17 @@ export const visitorsSlice = createSlice({
         state.error = null;
         const newVisitor = action.payload;
         const index = state.items.findIndex(
-          (visitor) => visitor.id === newVisitor.id
+          visitor => visitor.id === newVisitor.id
         );
         state.items[index] = { ...state.items[index], ...newVisitor };
       })
-      .addCase(visitorAPI.update.rejected, handleRejected);
-    //     builder.addCase(addContact.pending, handlePending);
-    //     builder.addCase(addContact.fulfilled, (state, action) => {
-    //       state.isLoading = false;
-    //       state.error = null;
-    //       state.items.push(action.payload);
-    //     });
-
-    //     builder.addCase(addContact.rejected, handleRejected);
+      .addCase(visitorAPI.update.rejected, handleRejected)
+      .addCase(visitorAPI.create.pending, handlePending)
+      .addCase(visitorAPI.create.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items.push(action.payload);
+      })
+      .addCase(visitorAPI.create.rejected, handleRejected);
   },
 });

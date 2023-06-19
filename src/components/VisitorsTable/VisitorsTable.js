@@ -1,29 +1,72 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Table, Button } from "react-bootstrap";
-import { selectVisitorsItems } from "../../redux/visitors/selectors";
 import visitorAPI from "../../redux/visitors/operations";
-import ModalUpdateVisitor from "../ModalUpdateVisitor/ModalUpdateVisitor";
+import ButtonUpdateVisitor from "../ButtonUpdateVisitor/ButtonUpdateVisitor";
+import {
+  selectSortColumn,
+  selectSortDirection,
+  selectVisitorsItems,
+} from "../../redux/visitors/selectors";
+import {
+  setSortColumn,
+  setSortDirection,
+} from "../../redux/visitors/sortSlice";
+import sortVisitors from "../../utils/sortVisitors";
 
 export default function VisitorsTable() {
   const dispatch = useDispatch();
+  const sortColumn = useSelector(selectSortColumn);
+  const sortDirection = useSelector(selectSortDirection);
+
   const visitors = useSelector(selectVisitorsItems);
 
   useEffect(() => {
     dispatch(visitorAPI.readAll());
-  }, [dispatch, visitors.length]);
+  }, [dispatch]);
+
+  const handleSort = (column) => {
+    if (sortColumn === column) {
+      dispatch(setSortDirection(sortDirection === "asc" ? "desc" : "asc"));
+    } else {
+      dispatch(setSortColumn(column));
+      dispatch(setSortDirection("asc"));
+    }
+  };
+
+  const sortedVisitors = [...visitors]; 
+  sortVisitors(sortedVisitors, sortColumn, sortDirection);  
+  
 
   return (
     <Table striped bordered hover>
       <thead>
         <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Time visit</th>
+          <th onClick={() => handleSort("name")}>
+            Name
+            {(sortColumn === "name" && (
+              <span>{sortDirection === "asc" ? " ⇧" : " ⇩"}</span>
+            )) ||
+              " ⇳"}
+          </th>
+          <th onClick={() => handleSort("lastName")}>
+            Last name
+            {(sortColumn === "lastName" && (
+              <span>{sortDirection === "asc" ? " ⇧" : " ⇩"}</span>
+            )) ||
+              " ⇳"}
+          </th>
+          <th onClick={() => handleSort("date")}>
+            Time visit
+            {(sortColumn === "date" && (
+              <span>{sortDirection === "asc" ? " ⇧" : " ⇩"}</span>
+            )) ||
+              " ⇳"}
+          </th>
         </tr>
       </thead>
       <tbody>
-        {visitors.map((visitor) => {
+        {sortedVisitors.map((visitor) => {
           return (
             <tr key={visitor.id}>
               <td>{visitor.name}</td>
@@ -33,7 +76,7 @@ export default function VisitorsTable() {
                 <Button onClick={() => dispatch(visitorAPI.remove(visitor.id))}>
                   Delete
                 </Button>{" "}
-                <ModalUpdateVisitor visitor={visitor}/>
+                <ButtonUpdateVisitor visitor={visitor} />
               </td>
             </tr>
           );

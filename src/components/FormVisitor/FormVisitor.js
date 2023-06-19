@@ -2,10 +2,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Button, Form } from "react-bootstrap";
 import visitorAPI from "../../redux/visitors/operations";
+import createData from "../../utils/createDate";
 
-function FormUpdateVisitor({ visitor, handleClose}) {
-  const [name, setName] = useState(`${visitor.name}`);
-  const [lastName, setLastName] = useState(`${visitor.lastName}`);
+function FormVisitor({ visitor, handleClose }) {
+  const [name, setName] = useState(visitor ? `${visitor.name}` : "");
+  const [lastName, setLastName] = useState(
+    visitor ? `${visitor.lastName}` : ""
+  );
 
   const dispatch = useDispatch();
 
@@ -28,9 +31,13 @@ function FormUpdateVisitor({ visitor, handleClose}) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("WORK!");
-    const { id } = visitor;
-    dispatch(visitorAPI.update({ id, name, lastName }));
+    if (visitor) {
+      const { id } = visitor;
+      dispatch(visitorAPI.update({ id, name, lastName }));
+    } else {
+      const date = createData();
+      dispatch(visitorAPI.create({ name, lastName, date }));
+    }
   };
 
   return (
@@ -56,10 +63,10 @@ function FormUpdateVisitor({ visitor, handleClose}) {
         />
       </Form.Group>
       <Button variant="primary" type="submit" onClick={handleClose}>
-        Update
+        {visitor ? "Update" : "Add"}
       </Button>
     </Form>
   );
 }
 
-export default FormUpdateVisitor;
+export default FormVisitor;

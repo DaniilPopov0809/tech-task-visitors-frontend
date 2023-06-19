@@ -1,12 +1,10 @@
 import VisitorsTable from "./components/VisitorsTable/VisitorsTable";
-import GropuButtons from "./components/GroupButtons/GroupButtons";
-
-
+import ButtonAddVisitor from "./components/ButtonAddVisitor/ButtonAddVisitor";
 
 function App() {
   return (
     <>
-      <GropuButtons />
+      <ButtonAddVisitor />
       <VisitorsTable />
     </>
   );
