@@ -1,6 +1,12 @@
+import VisitorsTable from "./components/VisitorsTable/VisitorsTable";
+import ButtonAddVisitor from "./components/ButtonAddVisitor/ButtonAddVisitor";
+
 function App() {
   return (
-    <h1>Hello World!</h1>
+    <>
+      <ButtonAddVisitor />
+      <VisitorsTable />
+    </>
   );
 }
 
