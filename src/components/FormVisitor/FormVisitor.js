@@ -4,7 +4,7 @@ import { Button, Form } from "react-bootstrap";
 import visitorAPI from "../../redux/visitors/operations";
 import createData from "../../utils/createDate";
 
-function FormVisitor({ visitor, handleClose }) {
+function FormVisitor({ visitor, handleClose, setIsOpenModal }) {
   const [name, setName] = useState(visitor ? `${visitor.name}` : "");
   const [lastName, setLastName] = useState(
     visitor ? `${visitor.lastName}` : ""
@@ -38,6 +38,7 @@ function FormVisitor({ visitor, handleClose }) {
       const date = createData();
       dispatch(visitorAPI.create({ name, lastName, date }));
     }
+    setIsOpenModal(false);
   };
 
   return (

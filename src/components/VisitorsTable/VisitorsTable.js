@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Table, Button } from "react-bootstrap";
+import { Table } from "react-bootstrap";
+import ButtonsModal from "../ButtonsModal/ButtonsModal";
 import visitorAPI from "../../redux/visitors/operations";
-import ButtonUpdateVisitor from "../ButtonUpdateVisitor/ButtonUpdateVisitor";
+
 import {
   selectSortColumn,
   selectSortDirection,
@@ -15,6 +16,9 @@ import {
 import sortVisitors from "../../utils/sortVisitors";
 
 export default function VisitorsTable() {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [selectedVisitor, setSelectedVisitor] = useState(null);
+
   const dispatch = useDispatch();
   const sortColumn = useSelector(selectSortColumn);
   const sortDirection = useSelector(selectSortDirection);
@@ -24,6 +28,11 @@ export default function VisitorsTable() {
   useEffect(() => {
     dispatch(visitorAPI.readAll());
   }, [dispatch]);
+
+  const handleClickRow = (visitor) => {
+    setIsOpenModal(true);
+    setSelectedVisitor(visitor);
+  }
 
   const handleSort = (column) => {
     if (sortColumn === column) {
@@ -39,6 +48,7 @@ export default function VisitorsTable() {
   
 
   return (
+    <>
     <Table striped bordered hover>
       <thead>
         <tr>
@@ -68,20 +78,18 @@ export default function VisitorsTable() {
       <tbody>
         {sortedVisitors.map((visitor) => {
           return (
-            <tr key={visitor.id}>
+            <tr key={visitor.id} onClick={() => handleClickRow(visitor)}>
               <td>{visitor.name}</td>
               <td>{visitor.lastName}</td>
               <td>
-                {visitor.date}{" "}
-                <Button onClick={() => dispatch(visitorAPI.remove(visitor.id))}>
-                  Delete
-                </Button>{" "}
-                <ButtonUpdateVisitor visitor={visitor} />
+                {visitor.date}
               </td>
             </tr>
           );
         })}
       </tbody>
     </Table>
+    {isOpenModal && <ButtonsModal visitor={selectedVisitor} setIsOpenModal={setIsOpenModal}/>}
+    </>
   );
 }

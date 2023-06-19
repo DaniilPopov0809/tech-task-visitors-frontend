@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import Modal from "../ModalVisitor/ModalVisitor";
+import VisitorModal from "../VisitorModal/VisitorModal";
 
 function ButtonAddVisitor({ visitor }) {
   const [show, setShow] = useState(false);
@@ -14,7 +14,7 @@ function ButtonAddVisitor({ visitor }) {
         Add
       </Button>
 
-      <Modal visitor={visitor} handleClose={handleClose} show={show} />
+      <VisitorModal visitor={visitor} handleClose={handleClose} show={show} />
     </>
   );
 }
