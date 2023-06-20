@@ -16,7 +16,7 @@ import {
 } from "../../redux/visitors/sortSlice";
 import sortVisitors from "../../utils/sortVisitors";
 
-export default function VisitorsTable() {
+const VisitorsTable = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [selectedVisitor, setSelectedVisitor] = useState(null);
 
@@ -49,7 +49,7 @@ export default function VisitorsTable() {
 
   return (
     <>
-      <Table striped bordered hover style={{ maxWidth: '700px' }}>
+      <Table striped bordered hover style={{ maxWidth: "700px" }}>
         <thead>
           <tr>
             <th onClick={() => handleSort("name")}>
@@ -98,4 +98,5 @@ export default function VisitorsTable() {
       )}
     </>
   );
-}
+};
+export default VisitorsTable;
