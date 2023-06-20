@@ -1,17 +1,17 @@
-import React from 'react';
-import { Navbar, Container } from 'react-bootstrap';
+import React from "react";
+import { Navbar, Container } from "react-bootstrap";
+import Logo from "../Logo/Logo";
 
 const Header = () => {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="dark" expand="lg" variant="dark">
       <Container>
-        <Navbar.Brand href="/">Мой сайт</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        {/* <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Главная</Nav.Link>
-            <Nav.Link href="#about">О нас</Nav.Link>
-            <Nav.Link href="#contact">Контакты</Nav.Link>
+        <Navbar.Brand href="/"><Logo/></Navbar.Brand>
+        {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+          <Nav>
+            <Button variant="primary">Sign In</Button>
+            <Button variant="primary">Log Out</Button>
           </Nav>
         </Navbar.Collapse> */}
       </Container>

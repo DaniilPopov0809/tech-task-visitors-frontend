@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Table } from "react-bootstrap";
+import { ArrowUpDown, ArrowUp, ArrowDown } from "./VisitorTabele.styled";
 import ButtonsModal from "../ButtonsModal/ButtonsModal";
 import visitorAPI from "../../redux/visitors/operations";
 
@@ -32,7 +33,7 @@ export default function VisitorsTable() {
   const handleClickRow = (visitor) => {
     setIsOpenModal(true);
     setSelectedVisitor(visitor);
-  }
+  };
 
   const handleSort = (column) => {
     if (sortColumn === column) {
@@ -43,53 +44,58 @@ export default function VisitorsTable() {
     }
   };
 
-  const sortedVisitors = [...visitors]; 
-  sortVisitors(sortedVisitors, sortColumn, sortDirection);  
-  
+  const sortedVisitors = [...visitors];
+  sortVisitors(sortedVisitors, sortColumn, sortDirection);
 
   return (
     <>
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th onClick={() => handleSort("name")}>
-            Name
-            {(sortColumn === "name" && (
-              <span>{sortDirection === "asc" ? " ⇧" : " ⇩"}</span>
-            )) ||
-              " ⇳"}
-          </th>
-          <th onClick={() => handleSort("lastName")}>
-            Last name
-            {(sortColumn === "lastName" && (
-              <span>{sortDirection === "asc" ? " ⇧" : " ⇩"}</span>
-            )) ||
-              " ⇳"}
-          </th>
-          <th onClick={() => handleSort("date")}>
-            Time visit
-            {(sortColumn === "date" && (
-              <span>{sortDirection === "asc" ? " ⇧" : " ⇩"}</span>
-            )) ||
-              " ⇳"}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {sortedVisitors.map((visitor) => {
-          return (
-            <tr key={visitor.id} onClick={() => handleClickRow(visitor)}>
-              <td>{visitor.name}</td>
-              <td>{visitor.lastName}</td>
-              <td>
-                {visitor.date}
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </Table>
-    {isOpenModal && <ButtonsModal visitor={selectedVisitor} setIsOpenModal={setIsOpenModal}/>}
+      <Table striped bordered hover variant="dark" bg="dark">
+        <thead>
+          <tr>
+            <th onClick={() => handleSort("name")}>
+              Name
+              {(sortColumn === "name" && (
+                <span>
+                  {sortDirection === "asc" ? <ArrowUp /> : <ArrowDown />}
+                </span>
+              )) || <ArrowUpDown />}
+            </th>
+            <th onClick={() => handleSort("lastName")}>
+              Last name
+              {(sortColumn === "lastName" && (
+                <span>
+                  {sortDirection === "asc" ? <ArrowUp /> : <ArrowDown />}
+                </span>
+              )) || <ArrowUpDown />}
+            </th>
+            <th onClick={() => handleSort("date")}>
+              Time visit
+              {(sortColumn === "date" && (
+                <span>
+                  {sortDirection === "asc" ? <ArrowUp /> : <ArrowDown />}
+                </span>
+              )) || <ArrowUpDown />}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {sortedVisitors.map((visitor) => {
+            return (
+              <tr key={visitor.id} onClick={() => handleClickRow(visitor)}>
+                <td>{visitor.name}</td>
+                <td>{visitor.lastName}</td>
+                <td>{visitor.date}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+      {isOpenModal && (
+        <ButtonsModal
+          visitor={selectedVisitor}
+          setIsOpenModal={setIsOpenModal}
+        />
+      )}
     </>
   );
 }

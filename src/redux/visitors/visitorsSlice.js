@@ -1,19 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 import visitorAPI from "./operations";
+import { toast } from 'react-toastify';
+import handleHttpErrors from "../../utils/handleHttpErrors";
 
 const handlePending = (state) => {
   state.isLoading = true;
 };
 
 const handleRejected = (state, action) => {
+  console.log("🚀 ~ file: visitorsSlice.js:10 ~ handleRejected ~ action:", action)
   state.isLoading = false;
+  
   state.error = action.payload;
+  console.log(state.error);
+  toast.error(handleHttpErrors(state.error));
 };
 
 const initialState = {
   items: [],
   isLoading: false,
   error: null,
+  
 };
 
 export const visitorsSlice = createSlice({
@@ -37,6 +44,7 @@ export const visitorsSlice = createSlice({
           visitor => visitor.id === action.payload.id
         );
         state.items.splice(index, 1);
+        toast.success(`${action.payload.name} ${action.payload.lastName} deleted!`);
       })
           
       .addCase(visitorAPI.remove.rejected, handleRejected)
@@ -49,6 +57,7 @@ export const visitorsSlice = createSlice({
           visitor => visitor.id === newVisitor.id
         );
         state.items[index] = { ...state.items[index], ...newVisitor };
+        toast.success(`${action.payload.name} ${action.payload.lastName} updated!`);
       })
       .addCase(visitorAPI.update.rejected, handleRejected)
       .addCase(visitorAPI.create.pending, handlePending)
@@ -56,6 +65,7 @@ export const visitorsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.items.push(action.payload);
+        toast.success(`${action.payload.name} ${action.payload.lastName} added!`);
       })
       .addCase(visitorAPI.create.rejected, handleRejected);
   },

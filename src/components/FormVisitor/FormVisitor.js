@@ -34,39 +34,47 @@ function FormVisitor({ visitor, handleClose, setIsOpenModal }) {
     if (visitor) {
       const { id } = visitor;
       dispatch(visitorAPI.update({ id, name, lastName }));
+      setIsOpenModal(false);
     } else {
       const date = createData();
       dispatch(visitorAPI.create({ name, lastName, date }));
     }
-    setIsOpenModal(false);
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3">
-        <Form.Label>First name</Form.Label>
-        <Form.Control
-          name="name"
-          type="text"
-          value={name}
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Last name</Form.Label>
-        <Form.Control
-          name="lastName"
-          type="text"
-          value={lastName}
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
-      <Button variant="primary" type="submit" onClick={handleClose}>
-        {visitor ? "Update" : "Add"}
-      </Button>
-    </Form>
+    <>
+      {" "}
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>First name</Form.Label>
+          <Form.Control
+            name="name"
+            type="text"
+            value={name}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Last name</Form.Label>
+          <Form.Control
+            name="lastName"
+            type="text"
+            value={lastName}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        <Button
+          variant="primary"
+          type="submit"
+          onClick={handleClose}
+          disabled={!name || !lastName}
+        >
+          {visitor ? "Update" : "Add"}
+        </Button>
+      </Form>
+    </>
   );
 }
 
