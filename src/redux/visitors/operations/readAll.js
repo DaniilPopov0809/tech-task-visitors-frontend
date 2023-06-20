@@ -10,7 +10,7 @@ export const readAll = createAsyncThunk(
       const response = await axios.get('/visitors');
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.status);
     }
   }
 );

@@ -1,12 +1,8 @@
-import VisitorsTable from "./components/VisitorsTable/VisitorsTable";
-import ButtonAddVisitor from "./components/ButtonAddVisitor/ButtonAddVisitor";
+import Layout from "./components/Layout/Layout";
 
 function App() {
   return (
-    <>
-      <ButtonAddVisitor />
-      <VisitorsTable />
-    </>
+      <Layout />
   );
 }
 

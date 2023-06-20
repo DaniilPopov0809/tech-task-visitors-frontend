@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import Modal from "../ModalVisitor/ModalVisitor";
+import VisitorModal from "../VisitorModal/VisitorModal";
 
-function ButtonUpdateVisitor({ visitor }) {
+function ButtonUpdateVisitor({ visitor, setIsOpenModal }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
+
   const handleShow = () => setShow(true);
 
   return (
@@ -14,7 +15,12 @@ function ButtonUpdateVisitor({ visitor }) {
         Update
       </Button>
 
-      <Modal visitor={visitor} handleClose={handleClose} show={show} />
+      <VisitorModal
+        visitor={visitor}
+        handleClose={handleClose}
+        show={show}
+        setIsOpenModal={setIsOpenModal}
+      />
     </>
   );
 }
