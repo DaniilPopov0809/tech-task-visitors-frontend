@@ -7,12 +7,14 @@ const handlePending = (state) => {
   state.isLoading = true;
 };
 
-const handleRejected = (state, action) => {
-  console.log("🚀 ~ file: visitorsSlice.js:10 ~ handleRejected ~ action:", action)
+const handleFulfilled = (state) => {
   state.isLoading = false;
-  
+  state.error = null;
+};
+
+const handleRejected = (state, action) => {
+  state.isLoading = false;  
   state.error = action.payload;
-  console.log(state.error);
   toast.error(handleHttpErrors(state.error));
 };
 
@@ -31,15 +33,13 @@ export const visitorsSlice = createSlice({
     builder
       .addCase(visitorAPI.readAll.pending, handlePending)
       .addCase(visitorAPI.readAll.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
+        handleFulfilled(state);
         state.items = action.payload;
       })
       .addCase(visitorAPI.readAll.rejected, handleRejected)
       .addCase(visitorAPI.remove.pending, handlePending)
       .addCase(visitorAPI.remove.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
+        handleFulfilled(state);
         const index = state.items.findIndex(
           visitor => visitor.id === action.payload.id
         );
@@ -50,8 +50,7 @@ export const visitorsSlice = createSlice({
       .addCase(visitorAPI.remove.rejected, handleRejected)
       .addCase(visitorAPI.update.pending, handlePending)
       .addCase(visitorAPI.update.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
+        handleFulfilled(state);
         const newVisitor = action.payload;
         const index = state.items.findIndex(
           visitor => visitor.id === newVisitor.id

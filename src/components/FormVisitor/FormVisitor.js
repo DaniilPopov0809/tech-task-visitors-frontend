@@ -43,9 +43,8 @@ function FormVisitor({ visitor, handleClose, setIsOpenModal }) {
 
   return (
     <>
-      {" "}
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
+      <Form onSubmit={handleSubmit} className="text-center">
+        <Form.Group className="mb-3 text-start" >
           <Form.Label>First name</Form.Label>
           <Form.Control
             name="name"
@@ -55,7 +54,7 @@ function FormVisitor({ visitor, handleClose, setIsOpenModal }) {
             required
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-3 text-start">
           <Form.Label>Last name</Form.Label>
           <Form.Control
             name="lastName"

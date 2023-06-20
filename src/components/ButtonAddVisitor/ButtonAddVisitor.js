@@ -11,7 +11,7 @@ function ButtonAddVisitor({ visitor }) {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Add
+        Add visitor
       </Button>
 
       <VisitorModal visitor={visitor} handleClose={handleClose} show={show} />

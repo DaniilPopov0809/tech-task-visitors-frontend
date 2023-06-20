@@ -49,7 +49,7 @@ export default function VisitorsTable() {
 
   return (
     <>
-      <Table striped bordered hover variant="dark" bg="dark">
+      <Table striped bordered hover style={{ maxWidth: '700px' }}>
         <thead>
           <tr>
             <th onClick={() => handleSort("name")}>

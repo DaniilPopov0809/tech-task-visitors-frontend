@@ -3,7 +3,7 @@ import FormVisitor from '../FormVisitor/FormVisitor';
 
 const VisitorModal = ({visitor, handleClose, show, setIsOpenModal}) => {
   return (
-    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+    <Modal show={show} onHide={handleClose} size='sm'>
       <Modal.Header closeButton>
         <Modal.Title>{visitor? "Update visitor": "Add visitor" }</Modal.Title>
       </Modal.Header>
