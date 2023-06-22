@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Container} from "react-bootstrap";
+import { Navbar, Container, Nav, Button} from "react-bootstrap";
 import Logo from "../Logo/Logo";
 
 const Header = () => {
@@ -10,7 +10,7 @@ const Header = () => {
           <Navbar.Brand href="/">
             <Logo /> 
           </Navbar.Brand>
-          {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse
             id="basic-navbar-nav"
             className="justify-content-end"
@@ -21,7 +21,7 @@ const Header = () => {
               </Button>
               <Button variant="primary" className="ml-2">Log Out</Button>
             </Nav>
-          </Navbar.Collapse> */}
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     </header>
