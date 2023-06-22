@@ -27,5 +27,5 @@ const Layout = () => {
     </MainContainer>
   );
 };
-
+  
 export default Layout;
