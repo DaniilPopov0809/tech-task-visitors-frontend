@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Button, Form } from "react-bootstrap";
@@ -44,7 +45,7 @@ function FormVisitor({ visitor, handleClose, setIsOpenModal }) {
   return (
     <>
       <Form onSubmit={handleSubmit} className="text-center">
-        <Form.Group className="mb-3 text-start" >
+        <Form.Group className="mb-3 text-start">
           <Form.Label>First name</Form.Label>
           <Form.Control
             name="name"
@@ -78,3 +79,14 @@ function FormVisitor({ visitor, handleClose, setIsOpenModal }) {
 }
 
 export default FormVisitor;
+
+FormVisitor.propTypes = {
+  visitor: PropTypes.exact({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    lastName: PropTypes.string,
+    date: PropTypes.string,
+  }),
+  handleClose: PropTypes.func,
+  setIsOpenModal: PropTypes.func,
+};
