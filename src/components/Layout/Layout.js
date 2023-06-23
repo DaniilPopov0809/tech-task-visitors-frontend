@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { MainContainer } from "./Layout.styled";
-import {Container } from "react-bootstrap";
+// import {Container } from "react-bootstrap";
 
 const Layout = () => {
   return (
