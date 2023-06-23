@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Table } from "react-bootstrap";
 import { ArrowUpDown, ArrowUp, ArrowDown } from "./VisitorTabele.styled";
 import ButtonsModal from "../ButtonsModal/ButtonsModal";
-import visitorAPI from "../../redux/visitors/operations";
+import visitorOperation from "../../redux/visitors/operations";
 
 import {
   selectSortColumn,
@@ -27,7 +27,7 @@ const VisitorsTable = () => {
   const visitors = useSelector(selectVisitorsItems);
 
   useEffect(() => {
-    dispatch(visitorAPI.readAll());
+    dispatch(visitorOperation.readAll());
   }, [dispatch]);
 
   const handleClickRow = (visitor) => {
@@ -60,9 +60,9 @@ const VisitorsTable = () => {
                 </span>
               )) || <ArrowUpDown />}
             </th>
-            <th onClick={() => handleSort("lastName")}>
+            <th onClick={() => handleSort("lastname")}>
               Last name
-              {(sortColumn === "lastName" && (
+              {(sortColumn === "lastname" && (
                 <span>
                   {sortDirection === "asc" ? <ArrowUp /> : <ArrowDown />}
                 </span>
@@ -83,7 +83,7 @@ const VisitorsTable = () => {
             return (
               <tr key={visitor.id} onClick={() => handleClickRow(visitor)}>
                 <td>{visitor.name}</td>
-                <td>{visitor.lastName}</td>
+                <td>{visitor.lastname}</td>
                 <td>{visitor.date}</td>
               </tr>
             );

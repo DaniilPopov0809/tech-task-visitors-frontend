@@ -7,7 +7,8 @@ import { ToastContainer } from "react-toastify";
 import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
-import store from "./redux/store";
+import { PersistGate } from 'redux-persist/integration/react';
+import {  persistor, store } from './redux/store';
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
 
@@ -15,6 +16,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter basename="/tech-task-visitors-frontend">
         <App />
         <ToastContainer
@@ -30,6 +32,7 @@ root.render(
           theme="dark"
         />
       </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

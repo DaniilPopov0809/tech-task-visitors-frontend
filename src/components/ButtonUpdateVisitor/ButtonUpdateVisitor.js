@@ -33,7 +33,7 @@ ButtonUpdateVisitor.propTypes = {
   visitor: PropTypes.exact({
     id: PropTypes.string.isRequired,
     name: PropTypes.string,
-    lastName: PropTypes.string,
+    lastname: PropTypes.string,
     date: PropTypes.string,
   }),
 };

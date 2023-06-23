@@ -1,31 +1,31 @@
-import { useSelector } from "react-redux";
-import { Container } from "react-bootstrap";
-import VisitorsTable from "../VisitorsTable/VisitorsTable";
-import ButtonAddVisitor from "../ButtonAddVisitor/ButtonAddVisitor";
+// import { Container } from "react-bootstrap";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Loader from "../Loader/Loader";
-import { Title, MainContainer } from "./Layout.styled";
-import { selectIsLoading } from "../../redux/visitors/selectors";
+import { Suspense } from "react";
+import { Outlet } from "react-router-dom";
+import { MainContainer } from "./Layout.styled";
+import {Container } from "react-bootstrap";
 
 const Layout = () => {
-  const isLoading = useSelector(selectIsLoading);
-
   return (
     <MainContainer className="p-0">
       <Header />
       <main className="bg-light text-center text-dark flex-grow-1">
-        <Container className="py-4 px-3">
-          <Title>Visitors in the building:</Title>
-          <Container className="d-flex flex-column justify-content-center align-items-center p-0">
-            <VisitorsTable />
-            {isLoading ? <Loader /> : <ButtonAddVisitor />}
-          </Container>
-        </Container>
+      {/* <Container className="w-100 h-100 d-flex justify-content-center"> */}
+        <Suspense
+          fallback={
+            // <Container className="d-flex justify-content-center align-items-center w-100 h-100">
+            <p className="fs-2 ">Loading...</p> //TODO
+            // </Container>
+          }
+        >
+          <Outlet />
+        </Suspense>
+        {/* </Container> */}
       </main>
       <Footer />
     </MainContainer>
   );
 };
-  
+
 export default Layout;

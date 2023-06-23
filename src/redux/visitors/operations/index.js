@@ -3,6 +3,6 @@ import { remove } from "./remove";
 import { create } from "./create";
 import { update } from "./update";
 
-const visitorAPI = { readAll, remove, create, update };
+const visitorOperation = { readAll, remove, create, update };
 
-export default visitorAPI;
+export default visitorOperation;

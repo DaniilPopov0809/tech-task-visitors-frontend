@@ -2,13 +2,13 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Button, Form } from "react-bootstrap";
-import visitorAPI from "../../redux/visitors/operations";
+import visitorOperation from "../../redux/visitors/operations";
 import createData from "../../utils/createDate";
 
-function FormVisitor({ visitor, handleClose, setIsOpenModal }) {
+function VisitorForm({ visitor, handleClose, setIsOpenModal }) {
   const [name, setName] = useState(visitor ? `${visitor.name}` : "");
-  const [lastName, setLastName] = useState(
-    visitor ? `${visitor.lastName}` : ""
+  const [lastname, setlastname] = useState(
+    visitor ? `${visitor.lastname}` : ""
   );
 
   const dispatch = useDispatch();
@@ -20,8 +20,8 @@ function FormVisitor({ visitor, handleClose, setIsOpenModal }) {
         setName(value);
         break;
       }
-      case "lastName": {
-        setLastName(value);
+      case "lastname": {
+        setlastname(value);
         break;
       }
 
@@ -34,18 +34,18 @@ function FormVisitor({ visitor, handleClose, setIsOpenModal }) {
     event.preventDefault();
     if (visitor) {
       const { id } = visitor;
-      dispatch(visitorAPI.update({ id, name, lastName }));
+      dispatch(visitorOperation.update({ id, name, lastname }));
       setIsOpenModal(false);
     } else {
       const date = createData();
-      dispatch(visitorAPI.create({ name, lastName, date }));
+      dispatch(visitorOperation.create({ name, lastname, date }));
     }
   };
 
   return (
     <>
-      <Form onSubmit={handleSubmit} className="text-center">
-        <Form.Group className="mb-3 text-start">
+      <Form onSubmit={handleSubmit} className="text-start">
+        <Form.Group className="mb-3">
           <Form.Label>First name</Form.Label>
           <Form.Control
             name="name"
@@ -55,12 +55,12 @@ function FormVisitor({ visitor, handleClose, setIsOpenModal }) {
             required
           />
         </Form.Group>
-        <Form.Group className="mb-3 text-start">
+        <Form.Group className="mb-3">
           <Form.Label>Last name</Form.Label>
           <Form.Control
-            name="lastName"
+            name="lastname"
             type="text"
-            value={lastName}
+            value={lastname}
             onChange={handleChange}
             required
           />
@@ -69,7 +69,7 @@ function FormVisitor({ visitor, handleClose, setIsOpenModal }) {
           variant="primary"
           type="submit"
           onClick={handleClose}
-          disabled={!name || !lastName}
+          disabled={!name || !lastname}
         >
           {visitor ? "Update" : "Add"}
         </Button>
@@ -78,13 +78,13 @@ function FormVisitor({ visitor, handleClose, setIsOpenModal }) {
   );
 }
 
-export default FormVisitor;
+export default VisitorForm;
 
-FormVisitor.propTypes = {
+VisitorForm.propTypes = {
   visitor: PropTypes.exact({
     id: PropTypes.string.isRequired,
     name: PropTypes.string,
-    lastName: PropTypes.string,
+    lastname: PropTypes.string,
     date: PropTypes.string,
   }),
   handleClose: PropTypes.func,
