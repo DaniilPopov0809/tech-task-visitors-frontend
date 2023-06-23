@@ -29,9 +29,9 @@ The service uses basic authorization through the login/password of the administr
 
 ## Technology stack [(backend)](https://github.com/DaniilPopov0809/tech-task-visitors-backend):
 
-[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![Commander](https://img.shields.io/badge/commander-000000?style=for-the-badge)
-[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
 ![JWT](https://img.shields.io/badge/jwt-ED0B2F?style=for-the-badge)
 ![JOI](https://img.shields.io/badge/joi-F1FD1D?style=for-the-badge)
 
