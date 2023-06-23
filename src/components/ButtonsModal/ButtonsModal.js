@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { Button, Modal } from "react-bootstrap";
 import ButtonUpdateVisitor from "../ButtonUpdateVisitor/ButtonUpdateVisitor";
-import visitorAPI from "../../redux/visitors/operations";
+import visitorOperation from "../../redux/visitors/operations";
 
 const ButtonsModal = ({ setIsOpenModal, visitor }) => {
   const dispatch = useDispatch();
@@ -15,14 +15,14 @@ const ButtonsModal = ({ setIsOpenModal, visitor }) => {
         <Modal.Header closeButton onClick={() => setIsOpenModal(false)}>
           <Modal.Title
             style={{ fontSize: 20 }}
-          >{`What do with ${visitor.name} ${visitor.lastName}?`}</Modal.Title>
+          >{`What do with ${visitor.name} ${visitor.lastname}?`}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
           <Button
             style={{ marginRight: 16 }}
             onClick={() => {
-              dispatch(visitorAPI.remove(visitor.id));
+              dispatch(visitorOperation.remove(visitor.id));
               setIsOpenModal(false);
             }}
           >
@@ -45,7 +45,7 @@ ButtonsModal.propTypes = {
   visitor: PropTypes.exact({
     id: PropTypes.string.isRequired,
     name: PropTypes.string,
-    lastName: PropTypes.string,
+    lastname: PropTypes.string,
     date: PropTypes.string,
   }),
 };

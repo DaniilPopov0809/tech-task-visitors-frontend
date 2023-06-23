@@ -3,13 +3,12 @@ import axios from "axios";
 
 export const update = createAsyncThunk(
   "visitors/update",
-  async ({id, name, lastName }, thunkAPI) => {
+  async ({ id, name, lastname }, thunkAPI) => {
     try {
-      const response = await axios.patch(`/visitors/${(id)}`, {name, lastName});
+      const response = await axios.patch(`/visitors/${id}`, { name, lastname });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.status);
-
     }
   }
 );
