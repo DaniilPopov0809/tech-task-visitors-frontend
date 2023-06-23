@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktech_task_visitors_frontend=self.webpackChunktech_task_visitors_frontend||[]).push([[75],{6075:function(n,t,e){e.r(t);var s=e(1087),r=e(184);t.default=function(){return(0,r.jsxs)("h1",{children:["Welcome! Please, ",(0,r.jsx)(s.rU,{to:"/login",children:"Log In"})," as an administrator to continue working."]})}}}]);
+//# sourceMappingURL=75.e90968d3.chunk.js.map
