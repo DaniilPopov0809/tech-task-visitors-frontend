@@ -1,11 +1,8 @@
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import { Button, Modal } from "react-bootstrap";
-import ButtonUpdateVisitor from "../ButtonUpdateVisitor/ButtonUpdateVisitor";
-import visitorOperation from "../../redux/visitors/operations";
+import { Modal } from "react-bootstrap";
+import ButtonVisitor from "../ButtonVisitor/ButtonVisitor";
 
 const ButtonsModal = ({ setIsOpenModal, visitor }) => {
-  const dispatch = useDispatch();
   return (
     <div
       className="modal show"
@@ -19,18 +16,16 @@ const ButtonsModal = ({ setIsOpenModal, visitor }) => {
         </Modal.Header>
 
         <Modal.Body>
-          <Button
-            style={{ marginRight: 16 }}
-            onClick={() => {
-              dispatch(visitorOperation.remove(visitor.id));
-              setIsOpenModal(false);
-            }}
-          >
-            Delete
-          </Button>
-          <ButtonUpdateVisitor
+          <ButtonVisitor
             visitor={visitor}
             setIsOpenModal={setIsOpenModal}
+            name={"Delete"}
+            nameClass="me-4"
+          />
+          <ButtonVisitor
+            visitor={visitor}
+            setIsOpenModal={setIsOpenModal}
+            name={"Update"}
           />
         </Modal.Body>
       </Modal.Dialog>

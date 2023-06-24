@@ -2,11 +2,11 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import { MainContainer } from "./Layout.styled";
+import { Container } from "react-bootstrap";
 
 const Layout = () => {
   return (
-    <MainContainer className="p-0">
+    <Container className="p-0 min-vh-100 d-flex flex-column">
       <Header />
       <main className="bg-light text-center text-dark flex-grow-1">
         <Suspense>
@@ -14,7 +14,7 @@ const Layout = () => {
         </Suspense>
       </main>
       <Footer />
-    </MainContainer>
+    </Container>
   );
 };
 
