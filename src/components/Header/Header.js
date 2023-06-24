@@ -1,24 +1,23 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import authOperation from "../../redux/auth/operations";
-import { Navbar, Container, Nav} from "react-bootstrap";
+import { Navbar, Container, Nav } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import { selectIsLoggedIn, selectUsername } from "../../redux/auth/selectors";
 
 const Header = () => {
-
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
-   const username = useSelector(selectUsername);
+  const username = useSelector(selectUsername);
 
   return (
     <header>
       <Navbar bg="dark" expand="lg" variant="dark">
         <Container>
-          <Navbar.Brand >
+          <Navbar.Brand>
             <Link to={"/"}>
-            <Logo />
+              <Logo />
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -34,7 +33,9 @@ const Header = () => {
             id="basic-navbar-nav"
             className="justify-content-end"
           >
-            {isLoggedIn && <span className="text-white me-4 fs-5">Hello, {username}!</span>}
+            {isLoggedIn && (
+              <span className="text-white me-4 fs-5">Hello, {username}!</span>
+            )}
             <Nav>
               <Link to="/login" className="btn btn-primary me-3">
                 Log In

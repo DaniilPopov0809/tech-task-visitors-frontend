@@ -7,8 +7,6 @@ import visitorOperation from "../../redux/visitors/operations";
 import createData from "../../utils/createDate";
 
 function VisitorForm({ visitor, handleClose, setIsOpenModal, editForm }) {
-  console.log("🚀 ~ file: VisitorFrom.js:103 ~ VisitorForm ~ visitor:", visitor)
-  console.log("🚀 ~ file: VisitorFrom.js:103 ~ VisitorForm ~ editForm:", editForm)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState(visitor ? `${visitor.name}` : "");
@@ -138,6 +136,7 @@ VisitorForm.propTypes = {
   }),
   handleClose: PropTypes.func,
   setIsOpenModal: PropTypes.func,
+  editForm: PropTypes.string,
 };
 
 export default VisitorForm;

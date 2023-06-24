@@ -47,8 +47,6 @@ const VisitorModal = ({ visitor, handleClose, show, setIsOpenModal, name }) => {
   );
 };
 
-export default VisitorModal;
-
 VisitorModal.propTypes = {
   visitor: PropTypes.exact({
     id: PropTypes.string.isRequired,
@@ -59,4 +57,7 @@ VisitorModal.propTypes = {
   handleClose: PropTypes.func,
   show: PropTypes.bool,
   setIsOpenModal: PropTypes.func,
+  name: PropTypes.string,
 };
+
+export default VisitorModal;

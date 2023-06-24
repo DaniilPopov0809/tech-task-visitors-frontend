@@ -33,8 +33,6 @@ const ButtonsModal = ({ setIsOpenModal, visitor }) => {
   );
 };
 
-export default ButtonsModal;
-
 ButtonsModal.propTypes = {
   setIsOpenModal: PropTypes.func,
   visitor: PropTypes.exact({
@@ -44,3 +42,5 @@ ButtonsModal.propTypes = {
     date: PropTypes.string,
   }),
 };
+
+export default ButtonsModal;

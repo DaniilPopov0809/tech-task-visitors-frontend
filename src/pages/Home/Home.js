@@ -10,7 +10,10 @@ const Home = () => {
     <Container className="px-3 py-4">
       <h1 className="mb-5">Welcome! </h1>
       {isLoggedIn ? (
-        <h2>You are logged in, you can <Link to="/visitors">continue</Link> working.</h2>
+        <h2>
+          You are logged in, you can <Link to="/visitors">continue</Link>{" "}
+          working.
+        </h2>
       ) : (
         <h2>
           This service for manual registration of visitors in the building. If

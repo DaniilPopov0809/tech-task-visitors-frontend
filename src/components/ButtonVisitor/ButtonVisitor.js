@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import VisitorModal from "../VisitorModal/VisitorModal";
 
-function ButtonVisitor({ visitor, setIsOpenModal, name, nameClass}) {
+function ButtonVisitor({ visitor, setIsOpenModal, name, nameClass }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -13,7 +13,7 @@ function ButtonVisitor({ visitor, setIsOpenModal, name, nameClass}) {
   return (
     <>
       <Button variant="primary" onClick={handleShow} className={nameClass}>
-       {name}
+        {name}
       </Button>
 
       <VisitorModal
@@ -27,8 +27,6 @@ function ButtonVisitor({ visitor, setIsOpenModal, name, nameClass}) {
   );
 }
 
-export default ButtonVisitor;
-
 ButtonVisitor.propTypes = {
   setIsOpenModal: PropTypes.func,
   visitor: PropTypes.exact({
@@ -38,4 +36,7 @@ ButtonVisitor.propTypes = {
     date: PropTypes.string,
   }),
   name: PropTypes.string,
+  nameClass: PropTypes.string,
 };
+
+export default ButtonVisitor;
