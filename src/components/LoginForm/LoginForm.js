@@ -1,4 +1,3 @@
-// import PropTypes from "prop-types";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Button, Container, Form } from "react-bootstrap";
@@ -33,11 +32,11 @@ function LoginForm() {
   };
 
   return (
-    <Container className="w-100 h-100 ">
+    <Container className="w-100 h-100 d-flex justify-content-center ">
       <Form
         onSubmit={handleSubmit}
         className="text-center border border-1 rounded p-3"
-        style={{ maxWidth: "500px" }}
+        style={{ width: "400px" }}
       >
         <Form.Group className="mb-3 text-start">
           <Form.Label>Username</Form.Label>
@@ -70,13 +69,3 @@ function LoginForm() {
 
 export default LoginForm;
 
-// LoginForm.propTypes = {
-//   visitor: PropTypes.exact({
-//     id: PropTypes.string.isRequired,
-//     name: PropTypes.string,
-//     lastname: PropTypes.string,
-//     date: PropTypes.string,
-//   }),
-//   handleClose: PropTypes.func,
-//   setIsOpenModal: PropTypes.func,
-// };
