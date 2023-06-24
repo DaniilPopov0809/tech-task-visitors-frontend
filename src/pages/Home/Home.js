@@ -1,13 +1,27 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 const Home = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   return (
-    <h1>
-      Welcome! Please, <Link to="/login">Log In</Link> as an administrator to continue working.
-      {/* Please <Link to="/tweets">login</Link> in as an administrator to continue working. */}
-      {/* This is a simple app for viewing user cards with tweets.
-       Click <LinkTweets to="/tweets">Tweets</LinkTweets> to view application. */}
-    </h1>
+    <Container className="px-3 py-4">
+      <h1 className="mb-5">Welcome! </h1>
+      {isLoggedIn ? (
+        <h2>
+          You are logged in, you can <Link to="/visitors">continue</Link>{" "}
+          working.
+        </h2>
+      ) : (
+        <h2>
+          This service for manual registration of visitors in the building. If
+          you didn't register, please, <Link to="/login">Log In</Link> as an
+          administrator to continue working.
+        </h2>
+      )}
+    </Container>
   );
 };
 

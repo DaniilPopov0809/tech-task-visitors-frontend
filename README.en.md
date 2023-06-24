@@ -1,19 +1,23 @@
-**Language: [Українська](README.md), [English](README.en.md).**
+**Language: [Ukrainian](README.md), [English](README.en.md).**
 
+## Appearance
+
+![Appearance](./assets/view.jpg)
 ## Description of the project
-Service for manual registration of visitors in the building in which the frontend and [backend](https://github.com/DaniilPopov0809/tech-task-visitors-backend) are involved with data recording in a file.
-The service uses basic authorization through the login/password of the administrator.
+
+Service for manual registration of visitors in the building, which involves the frontend and [backend](https://github.com/DaniilPopov0809/tech-task-visitors-backend) with data recording in a file.
+The service uses basic authorization through the administrator's login/password.
 
 ## Implemented
 
 1. Welcome page
-2. The ``Visitors'' page, which displays information about visitors to the building in tabular form (name, family name,
+2. The `Visitors` page, which displays information about visitors to the building in tabular form (name, patronymic,
     time of entering the building)
 3. You can add, delete or update a visitor to the table.
-4. The table can be filtered by name, patronymic and time of entry into the building
+4. The table can be filtered by first name, patronymic, and time of entering the building
 5. When deleting, changing or creating a visitor, the data in the table is updated
 6. Information about the deletion, change or creation of a visitor
-7. Automatic redirection of the user in case of switching to non-existent route
+7. Automatic redirection of the user in case of switching to non-existent `route`
 8. Authorization for the administrator
 9. All data about visitors in the building is available only when logging in to the system
 
@@ -60,7 +64,7 @@ The service uses basic authorization through the login/password of the administr
 
 At the root of the project, create an `.env` file and add the following data to it:
 
-``bas
+```bas
 ADMIN_USERNAME='your_admin_name'
 ADMIN_PASSWORD='your_admin_password'
 SECRET_KEY='your_secret_key'
@@ -68,17 +72,17 @@ SECRET_KEY='your_secret_key'
 
 run the project:
 
-``bas
+```bas
 -npm start
 ```
 ## Instructions for use
 
-1. ``Login'' button - log in
-2. Logout button - log out
-3. Add visitor button - add a visitor
-4. To delete or update the browser, click the left button on the line of the desired visitor:
-     - Delete button - delete the blower
-     - Update button - update the visitor
-5. ``Home'' is the welcome page
-6. ``Visitors'' - a page with data about visitors
+1. `Login` button - log in
+2. `Logout` button - log out
+3. `Add visitor` button - add a visitor
+4. To delete or update a visitor, click the left button on the row of the desired visitor:
+     - `Delete` button - delete the visitor
+     - `Update `button - update the visitor
+5. `Home` is the welcome page
+6. `Visitors` - a page with data about visitors
 7. Filter when clicking `Name` `Lastname` `Time visit` cells

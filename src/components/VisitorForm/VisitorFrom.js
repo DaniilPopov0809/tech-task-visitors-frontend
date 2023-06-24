@@ -1,11 +1,14 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Button, Form } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
+import authOperation from "../../redux/auth/operations";
 import visitorOperation from "../../redux/visitors/operations";
 import createData from "../../utils/createDate";
 
-function VisitorForm({ visitor, handleClose, setIsOpenModal }) {
+function VisitorForm({ visitor, handleClose, setIsOpenModal, editForm }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [name, setName] = useState(visitor ? `${visitor.name}` : "");
   const [lastname, setlastname] = useState(
     visitor ? `${visitor.lastname}` : ""
@@ -16,21 +19,24 @@ function VisitorForm({ visitor, handleClose, setIsOpenModal }) {
   const handleChange = (event) => {
     const { name, value } = event.currentTarget;
     switch (name) {
-      case "name": {
+      case "name":
         setName(value);
         break;
-      }
-      case "lastname": {
+      case "lastname":
         setlastname(value);
         break;
-      }
-
+      case "username":
+        setUsername(value);
+        break;
+      case "password":
+        setPassword(value);
+        break;
       default:
         return;
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleVisitorSubmit = (event) => {
     event.preventDefault();
     if (visitor) {
       const { id } = visitor;
@@ -42,43 +48,84 @@ function VisitorForm({ visitor, handleClose, setIsOpenModal }) {
     }
   };
 
+  const handleLoginSubmit = (event) => {
+    event.preventDefault();
+    dispatch(authOperation.login({ username, password }));
+  };
+
   return (
-    <>
-      <Form onSubmit={handleSubmit} className="text-start">
-        <Form.Group className="mb-3">
-          <Form.Label>First name</Form.Label>
-          <Form.Control
-            name="name"
-            type="text"
-            value={name}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Last name</Form.Label>
-          <Form.Control
-            name="lastname"
-            type="text"
-            value={lastname}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        <Button
-          variant="primary"
-          type="submit"
-          onClick={handleClose}
-          disabled={!name || !lastname}
+    <Container className="w-100 h-100 d-flex justify-content-center p-0">
+      {visitor || editForm ? (
+        <Form onSubmit={handleVisitorSubmit} className="text-center w-100">
+          <Form.Group className="mb-3 text-start">
+            <Form.Label>First name</Form.Label>
+            <Form.Control
+              name="name"
+              type="text"
+              value={name}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3 text-start">
+            <Form.Label>Last name</Form.Label>
+            <Form.Control
+              name="lastname"
+              type="text"
+              value={lastname}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={handleClose}
+            disabled={!name || !lastname}
+          >
+            {visitor ? "Update" : "Add"}
+          </Button>
+        </Form>
+      ) : (
+        <Form
+          onSubmit={handleLoginSubmit}
+          className="text-center border border-1 rounded p-3"
+          style={{ width: "400px" }}
         >
-          {visitor ? "Update" : "Add"}
-        </Button>
-      </Form>
-    </>
+          <Form.Group className="mb-3 text-start">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              name="username"
+              type="text"
+              value={username}
+              placeholder="Enter username"
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3 text-start" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              name="password"
+              type="password"
+              placeholder="
+              Enter password"
+              onChange={handleChange}
+              value={password}
+            />
+          </Form.Group>
+          <Button
+            variant="primary"
+            type="submit"
+            disabled={!username || !password}
+          >
+            Login
+          </Button>
+        </Form>
+      )}
+    </Container>
   );
 }
-
-export default VisitorForm;
 
 VisitorForm.propTypes = {
   visitor: PropTypes.exact({
@@ -89,4 +136,7 @@ VisitorForm.propTypes = {
   }),
   handleClose: PropTypes.func,
   setIsOpenModal: PropTypes.func,
+  editForm: PropTypes.string,
 };
+
+export default VisitorForm;

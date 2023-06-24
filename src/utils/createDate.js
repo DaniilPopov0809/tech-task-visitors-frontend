@@ -1,7 +1,7 @@
 export default function createData() {
   const data = new Date();
   const dateToConvert = data.getTime();
-  const dateObject = new Date(dateToConvert); 
+  const dateObject = new Date(dateToConvert);
   const year = dateObject.getFullYear();
   const month = String(dateObject.getMonth() + 1).padStart(2, "0");
   const day = String(dateObject.getDate()).padStart(2, "0");

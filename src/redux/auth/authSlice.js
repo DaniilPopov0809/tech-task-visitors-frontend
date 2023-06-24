@@ -34,7 +34,6 @@ export const authSlice = createSlice({
       })
       .addCase(authOperation.refresh.fulfilled, (state, action) => {
         state.username = action.payload.username;
-        console.log("🚀 ~ file: authSlice.js:37 ~ .addCase ~ action.payload:", action.payload)
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
