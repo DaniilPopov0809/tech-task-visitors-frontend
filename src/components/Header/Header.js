@@ -34,35 +34,34 @@ const Header = () => {
               </Nav.Link>
             </Nav>
             <Nav>
-              {isLoggedIn ? (
+              {isLoggedIn && (
                 <span className="text-white me-4 fs-5">Hello, {username}!</span>
-              ) : (
-                <>
-                  <Link
-                    to="/login"
-                    className="btn btn-primary me-3 d-none d-lg-inline-block"
-                  >
-                    Log In
-                  </Link>
-                  <Link
-                    to="/logout"
-                    className="btn btn-primary d-none d-lg-inline-block"
-                    onClick={() => dispatch(authOperation.logOut())}
-                  >
-                    Log Out
-                  </Link>
-                  <Link to="/login" className="nav-link fs-5 d-lg-none">
-                    Log In
-                  </Link>
-                  <Link
-                    to="/logout"
-                    className="nav-link fs-5 d-lg-none"
-                    onClick={() => dispatch(authOperation.logOut())}
-                  >
-                    Log Out
-                  </Link>
-                </>
               )}
+              
+                <Link
+                  to="/login"
+                  className="btn btn-primary me-3 d-none d-lg-inline-block"
+                >
+                  Log In
+                </Link>
+                <Link
+                  to="/logout"
+                  className="btn btn-primary d-none d-lg-inline-block"
+                  onClick={() => dispatch(authOperation.logOut())}
+                >
+                  Log Out
+                </Link>
+                <Link to="/login" className="nav-link fs-5 d-lg-none">
+                  Log In
+                </Link>
+                <Link
+                  to="/logout"
+                  className="nav-link fs-5 d-lg-none"
+                  onClick={() => dispatch(authOperation.logOut())}
+                >
+                  Log Out
+                </Link>
+              
             </Nav>
           </Navbar.Collapse>
         </Container>
