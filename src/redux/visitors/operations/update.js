@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../const/axiosBaseUrl";
 
 export const update = createAsyncThunk(
   "visitors/update",
